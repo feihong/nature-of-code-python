@@ -5,7 +5,7 @@ be converted to ints before being passed to draw_line.
 from pyray import *
 
 width, height = 640, 360
-init_window(width, height, "Draw a line from the center")
+init_window(width, height, "Draw a line from the center to the mouse")
 set_target_fps(60)
 center_x, center_y = width // 2, height // 2
 

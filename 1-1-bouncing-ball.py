@@ -10,8 +10,6 @@ xspeed = 1
 yspeed = 3
 
 while not window_should_close():
-  if is_key_down(KEY_Q):
-    break
   begin_drawing()
   clear_background(WHITE)
 
