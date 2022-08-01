@@ -19,9 +19,9 @@ class Walker:
 
 init_window(width, height, 'Traditional random walk')
 set_target_fps(60)
+clear_background(WHITE)
 
 w = Walker()
-clear_background(WHITE)
 
 while not window_should_close():
   begin_drawing()
