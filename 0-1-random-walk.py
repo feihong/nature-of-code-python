@@ -7,18 +7,28 @@ class Walker:
   def __init__(self):
     self.x = width // 2
     self.y = height // 2
-    self.points = set()
+
+    # We must draw into a framebuffer if we want to draw continuously without
+    # using extra data structures or experiencing flickering
+    # https://www.reddit.com/r/raylib/comments/i6mkh0/only_clear_background_once/
+    self.frame_buffer = load_render_texture(width, height)
+
+    begin_texture_mode(self.frame_buffer)
+    clear_background(WHITE)
+    end_texture_mode()
 
   def display(self):
-    for point in self.points:
-      draw_circle_v(point, 1.0, VIOLET)
+    begin_texture_mode(self.frame_buffer)
+    draw_pixel(self.x, self.y, VIOLET)
+    end_texture_mode()
+
+    draw_texture(self.frame_buffer.texture, 0, 0, WHITE)
 
   def step(self):
     stepx = random.randint(-1, 1)
     stepy = random.randint(-1, 1)
     self.x += stepx
     self.y += stepy
-    self.points.add(Vector2(self.x, self.y))
 
 init_window(width, height, 'Traditional random walk')
 set_target_fps(60)
@@ -28,7 +38,6 @@ w = Walker()
 while not window_should_close():
   begin_drawing()
 
-  clear_background(WHITE)
   w.display()
   w.step()
 
