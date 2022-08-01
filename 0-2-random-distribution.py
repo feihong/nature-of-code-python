@@ -8,11 +8,11 @@ length = len(random_counts)
 
 init_window(width, height, 'Random number distribution')
 set_target_fps(60)
-clear_background(WHITE)
 
 while not window_should_close():
   begin_drawing()
 
+  clear_background(WHITE)
   random_counts[random.randint(0, length - 1)] += 1
   w = width // length
   for i in range(length):
