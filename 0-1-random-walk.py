@@ -9,18 +9,13 @@ class Walker:
     self.y = height // 2
 
   def display(self):
-    draw_circle(self.x, self.y, 2, VIOLET)
+    draw_circle(self.x, self.y, 1, VIOLET)
 
   def step(self):
-    choice = random.randint(0, 3)
-    if choice == 0:
-      self.x += 1
-    elif choice == 1:
-      self.x -= 1
-    elif choice == 2:
-      self.y += 1
-    elif choice == 3:
-      self.y -= 1
+    stepx = random.randint(-1, 1)
+    stepy = random.randint(-1, 1)
+    self.x += stepx
+    self.y += stepy
 
 init_window(width, height, 'Traditional random walk')
 set_target_fps(60)
@@ -30,7 +25,6 @@ clear_background(WHITE)
 
 while not window_should_close():
   begin_drawing()
-
 
   w.display()
   w.step()
