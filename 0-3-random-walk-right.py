@@ -7,10 +7,6 @@ class Walker:
   def __init__(self):
     self.x = width // 2
     self.y = height // 2
-
-    # We must draw into a framebuffer if we want to draw continuously without
-    # using extra data structures or experiencing flickering
-    # https://www.reddit.com/r/raylib/comments/i6mkh0/only_clear_background_once/
     self.frame_buffer = load_render_texture(width, height)
 
     begin_texture_mode(self.frame_buffer)
