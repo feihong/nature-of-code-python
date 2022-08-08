@@ -2,7 +2,7 @@
 
 ## Installation
 
-    pip install --user raylib
+    pip install --user --requirement requirements.txt
 
 ## Links
 
