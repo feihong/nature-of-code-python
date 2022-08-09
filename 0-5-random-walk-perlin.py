@@ -1,22 +1,14 @@
 from perlin_noise import PerlinNoise
 from pyray import *
+import utils
 
 width, height = 640, 360
 noise = PerlinNoise(seed=8888)
 
-class ValueMapper:
-  def __init__(self, input_start, input_end, output_start, output_end):
-    self.slope = (output_end - output_start) / (input_end - input_start)
-    self.input_start = input_start
-    self.output_start = output_start
-
-  def __call__(self, value):
-    return round(self.output_start + self.slope * (value - self.input_start))
-
-
 # Range of Perlin noise is not actually [-1, 1]
-mapx = ValueMapper(-0.5, 0.5, 0, width)
-mapy = ValueMapper(-0.5, 0.5, 0, height)
+# https://stackoverflow.com/questions/18261982/output-range-of-perlin-noise
+mapx = utils.make_map_func(-0.5, 0.5, 0, width)
+mapy = utils.make_map_func(-0.5, 0.5, 0, height)
 
 class Walker:
   def __init__(self):
@@ -32,9 +24,10 @@ class Walker:
   def step(self):
     xnoise = noise(self.tx)
     ynoise = noise(self.ty)
+    # print(xnoise, ynoise)
+
     self.x = mapx(xnoise)
     self.y = mapy(ynoise)
-    print(xnoise, ynoise)
 
     self.tx += 0.01
     self.ty += 0.01
