@@ -1,14 +1,14 @@
 from perlin_noise import PerlinNoise
 from pyray import *
-import utils
+from utils import make_map_func
 
 width, height = 640, 360
 noise = PerlinNoise(seed=8888)
 
 # Range of Perlin noise is not actually [-1, 1]
 # https://stackoverflow.com/questions/18261982/output-range-of-perlin-noise
-mapx = utils.make_map_func(-0.5, 0.5, 0, width)
-mapy = utils.make_map_func(-0.5, 0.5, 0, height)
+mapx = make_map_func(-0.5, 0.5, 0, width)
+mapy = make_map_func(-0.5, 0.5, 0, height)
 
 class Walker:
   def __init__(self):
